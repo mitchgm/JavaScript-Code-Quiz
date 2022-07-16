@@ -1,6 +1,6 @@
-var highScore = 0;
+// var highScore = 0;
 var time = 60;
-var mainEl = document.querySelector('main')
+var mainEl = document.querySelector('main');
 
 var questions = [
     {
@@ -60,12 +60,11 @@ var questions = [
       },
 ];
 
-question = [{}, {},]
+
 
 document.getElementById("start-quiz").addEventListener("click", startQuiz);
 
 function startQuiz() {
-  console.log("im bad at javascript")
   setInterval(myTimer, 1000);
   startQuestions();
   
@@ -83,7 +82,28 @@ function startQuestions() {
   var questTitle = document.createElement("h1");
   questTitle.textContent = questions[0].question;
   mainEl.appendChild(questTitle);
-  var questAnswer = document.createElement("button");
-  questAnswer
+  getAnswers();
 };
+
+function getAnswers() {
+  for (var i = 0; i <= 4; i++) {
+  var questAnswer = document.createElement("button");
+  questAnswer.addEventListener("click", validateAnswer(i));
+  questAnswer.textContent = questions[i].options[i];
+  mainEl.appendChild(questAnswer);
+  
+
+
+  }
+};
+
+ function validateAnswer(i) {
+  console.log(i);
+ if (this.textContent == questions[i].answer) {
+  console.log("correct")
+ 
+ }
+  
+};
+
 
