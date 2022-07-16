@@ -1,4 +1,6 @@
-var highScore = 0;
+// var highScore = 0;
+var time = 60;
+var mainEl = document.querySelector('main');
 
 var questions = [
     {
@@ -58,5 +60,50 @@ var questions = [
       },
 ];
 
+
+
+document.getElementById("start-quiz").addEventListener("click", startQuiz);
+
+function startQuiz() {
+  setInterval(myTimer, 1000);
+  startQuestions();
+  
+};
+
+function myTimer() {
+ document.querySelector('span').textContent = time;
+
+ // time--
+
+};
+
+function startQuestions() {
+  document.getElementById("start-quiz").style.display = "none";
+  var questTitle = document.createElement("h1");
+  questTitle.textContent = questions[0].question;
+  mainEl.appendChild(questTitle);
+  getAnswers();
+};
+
+function getAnswers() {
+  for (var i = 0; i <= 4; i++) {
+  var questAnswer = document.createElement("button");
+  questAnswer.addEventListener("click", validateAnswer(i));
+  questAnswer.textContent = questions[i].options[i];
+  mainEl.appendChild(questAnswer);
+  
+
+
+  }
+};
+
+ function validateAnswer(i) {
+  console.log(i);
+ if (this.textContent == questions[i].answer) {
+  console.log("correct")
+ 
+ }
+  
+};
 
 
