@@ -1,4 +1,6 @@
 var highScore = 0;
+var time = 60;
+var mainEl = document.querySelector('main')
 
 var questions = [
     {
@@ -58,5 +60,30 @@ var questions = [
       },
 ];
 
+question = [{}, {},]
 
+document.getElementById("start-quiz").addEventListener("click", startQuiz);
+
+function startQuiz() {
+  console.log("im bad at javascript")
+  setInterval(myTimer, 1000);
+  startQuestions();
+  
+};
+
+function myTimer() {
+ document.querySelector('span').textContent = time;
+
+ // time--
+
+};
+
+function startQuestions() {
+  document.getElementById("start-quiz").style.display = "none";
+  var questTitle = document.createElement("h1");
+  questTitle.textContent = questions[0].question;
+  mainEl.appendChild(questTitle);
+  var questAnswer = document.createElement("button");
+  questAnswer
+};
 
