@@ -110,8 +110,8 @@ function getAnswers() {
 };
 
   function validateAnswer() {
-   console.log("1");
-  console.log(questions[currentIndex-1].answer);
+  // console.log("1");
+ // console.log(questions[currentIndex-1].answer);
   if (this.textContent == questions[currentIndex-1].answer) {
    console.log("correct");
     clearTitle();
@@ -137,7 +137,7 @@ function clearTitle () {
   
   for (var e = 0; e < pastT.length; e++) {
     
-    pastT[e].style.visibility = "hidden";
+    pastT[e].style.display = "none";
   };
 };
 
@@ -147,7 +147,7 @@ function clearQ () {
  // console.log(pastQ);
   for (var e = 0; e < pastQ.length; e++) {
     
-    pastQ[e].style.visibility = "hidden";
+    pastQ[e].style.display = "none";
   };
 };
 
