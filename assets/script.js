@@ -83,9 +83,10 @@ function myTimer() {
 function startQuestions() {
   document.getElementById("start-quiz").style.display = "none";
   var questTitle = document.createElement("h1");
-  questTitle.textContent = questions[0].question;
+  questTitle.textContent = questions[currentIndex].question;
   mainEl.appendChild(questTitle);
   getAnswers();
+  currentIndex++;
 };
 
 function getAnswers() {
@@ -96,27 +97,28 @@ function getAnswers() {
   
   //console.log(i);
   mainEl.append(questAnswer);
-  indexCount();
+ // currentIndex++;
+  //indexCount();
   };
-  //validateAnswer();
+  validateAnswer();
   console.log('function works');
   questAnswer.addEventListener("click", validateAnswer(i));
 };
 
- function validateAnswer() {
-  console.log("1");
-  //console.log(questAnswer.textContent.op);
- if (this.textContent == questions[currentIndex].answer) {
-  console.log("correct");
- }
- else {
-  console.log('wrong');
- }
+  function validateAnswer() {
+   console.log("1");
+//   //console.log(questAnswer.textContent.op);
+//  if (this.textContent == questions[currentIndex].answer) {
+//   console.log("correct");
+//  }
+//  else {
+//   console.log('wrong');
+//  }
 
   
-};
+ };
 
-function indexCount () {
-  currentIndex++
-};
+// function indexCount () {
+//   currentIndex++
+// };
 
