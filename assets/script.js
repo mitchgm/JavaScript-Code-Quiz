@@ -84,7 +84,7 @@ function startQuestions() {
   document.getElementById("start-quiz").style.display = "none";
  
   var questTitle = document.createElement("h1");
-  questTitle.setAttribute("id", "questTitle")
+  questTitle.setAttribute("class", "pastTitle")
   questTitle.textContent = questions[currentIndex].question;
   mainEl.appendChild(questTitle);
   getAnswers();
@@ -94,7 +94,7 @@ function startQuestions() {
 function getAnswers() {
   for (var i = 0; i < questions[currentIndex].options.length; i++) {
   var questAnswer = document.createElement("button");
-  questAnswer.setAttribute("class", "questAnswer")
+  questAnswer.setAttribute("class", "pastAnswer")
   questAnswer.textContent = questions[currentIndex].options[i];
   
   //console.log(i);
@@ -114,14 +114,14 @@ function getAnswers() {
   console.log(questions[currentIndex-1].answer);
   if (this.textContent == questions[currentIndex-1].answer) {
    console.log("correct");
-    document.getElementById("questTitle").style.display = "none";
-    document.getElementById("questAnswer").style.display = "none";
+    clearTitle();
+    clearQ();
    startQuestions();
   }
   else {
    console.log('wrong');
-   document.getElementById("questTitle").style.display = "none";
-   document.getElementsByClassName("questAnswer").style.display = "none";
+   clearTitle();
+   clearQ();
    startQuestions();
   }
 
@@ -131,4 +131,23 @@ function getAnswers() {
 // function indexCount () {
 //   currentIndex++
 // };
+
+function clearTitle () {
+  var pastT = document.getElementsByClassName("pastTitle");
+  
+  for (var e = 0; e < pastT.length; e++) {
+    
+    pastT[e].style.visibility = "hidden";
+  };
+};
+
+
+function clearQ () {
+  var pastQ = document.getElementsByClassName("pastAnswer");
+ // console.log(pastQ);
+  for (var e = 0; e < pastQ.length; e++) {
+    
+    pastQ[e].style.visibility = "hidden";
+  };
+};
 
