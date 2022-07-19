@@ -82,7 +82,9 @@ function myTimer() {
 
 function startQuestions() {
   document.getElementById("start-quiz").style.display = "none";
+ 
   var questTitle = document.createElement("h1");
+  questTitle.setAttribute("id", "questTitle")
   questTitle.textContent = questions[currentIndex].question;
   mainEl.appendChild(questTitle);
   getAnswers();
@@ -92,28 +94,36 @@ function startQuestions() {
 function getAnswers() {
   for (var i = 0; i < questions[currentIndex].options.length; i++) {
   var questAnswer = document.createElement("button");
-  
+  questAnswer.setAttribute("class", "questAnswer")
   questAnswer.textContent = questions[currentIndex].options[i];
   
   //console.log(i);
   mainEl.append(questAnswer);
  // currentIndex++;
   //indexCount();
+
+  questAnswer.addEventListener("click", validateAnswer);
   };
-  validateAnswer();
-  console.log('function works');
-  questAnswer.addEventListener("click", validateAnswer(i));
+  //validateAnswer();
+  //console.log('function works');
+  
 };
 
   function validateAnswer() {
    console.log("1");
-//   //console.log(questAnswer.textContent.op);
-//  if (this.textContent == questions[currentIndex].answer) {
-//   console.log("correct");
-//  }
-//  else {
-//   console.log('wrong');
-//  }
+  console.log(questions[currentIndex-1].answer);
+  if (this.textContent == questions[currentIndex-1].answer) {
+   console.log("correct");
+    document.getElementById("questTitle").style.display = "none";
+    document.getElementById("questAnswer").style.display = "none";
+   startQuestions();
+  }
+  else {
+   console.log('wrong');
+   document.getElementById("questTitle").style.display = "none";
+   document.getElementsByClassName("questAnswer").style.display = "none";
+   startQuestions();
+  }
 
   
  };
