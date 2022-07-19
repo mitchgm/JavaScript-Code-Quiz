@@ -3,6 +3,8 @@ var time = 60;
 var mainEl = document.querySelector('main');
 var que_count = 0;
 var currentIndex = 0;
+var score = 0;
+var correctScore = 100;
 
 
 var questions = [
@@ -83,12 +85,15 @@ function myTimer() {
 function startQuestions() {
   document.getElementById("start-quiz").style.display = "none";
  
-  var questTitle = document.createElement("h1");
+  
+
+    var questTitle = document.createElement("h1");
   questTitle.setAttribute("class", "pastTitle")
   questTitle.textContent = questions[currentIndex].question;
   mainEl.appendChild(questTitle);
   getAnswers();
   currentIndex++;
+  
 };
 
 function getAnswers() {
@@ -104,9 +109,8 @@ function getAnswers() {
 
   questAnswer.addEventListener("click", validateAnswer);
   };
-  //validateAnswer();
-  //console.log('function works');
   
+ 
 };
 
   function validateAnswer() {
@@ -117,6 +121,8 @@ function getAnswers() {
     clearTitle();
     clearQ();
    startQuestions();
+   score += correctScore;
+   
   }
   else {
    console.log('wrong');
@@ -124,7 +130,8 @@ function getAnswers() {
    clearQ();
    startQuestions();
   }
-
+ 
+  
   
  };
 
@@ -151,3 +158,7 @@ function clearQ () {
   };
 };
 
+
+function endQuiz () {
+  window.alert('end of quiz')
+};
