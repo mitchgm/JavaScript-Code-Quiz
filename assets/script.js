@@ -1,6 +1,9 @@
 // var highScore = 0;
 var time = 60;
 var mainEl = document.querySelector('main');
+var que_count = 0;
+var currentIndex = 0;
+
 
 var questions = [
     {
@@ -80,30 +83,42 @@ function myTimer() {
 function startQuestions() {
   document.getElementById("start-quiz").style.display = "none";
   var questTitle = document.createElement("h1");
-  questTitle.textContent = questions[0].question;
+  questTitle.textContent = questions[currentIndex].question;
   mainEl.appendChild(questTitle);
   getAnswers();
+  currentIndex++;
 };
 
 function getAnswers() {
-  for (var i = 0; i <= 4; i++) {
+  for (var i = 0; i < questions[currentIndex].options.length; i++) {
   var questAnswer = document.createElement("button");
+  
+  questAnswer.textContent = questions[currentIndex].options[i];
+  
+  //console.log(i);
+  mainEl.append(questAnswer);
+ // currentIndex++;
+  //indexCount();
+  };
+  validateAnswer();
+  console.log('function works');
   questAnswer.addEventListener("click", validateAnswer(i));
-  questAnswer.textContent = questions[i].options[i];
-  mainEl.appendChild(questAnswer);
-  
-
-
-  }
 };
 
- function validateAnswer(i) {
-  console.log(i);
- if (this.textContent == questions[i].answer) {
-  console.log("correct")
- 
- }
-  
-};
+  function validateAnswer() {
+   console.log("1");
+//   //console.log(questAnswer.textContent.op);
+//  if (this.textContent == questions[currentIndex].answer) {
+//   console.log("correct");
+//  }
+//  else {
+//   console.log('wrong');
+//  }
 
+  
+ };
+
+// function indexCount () {
+//   currentIndex++
+// };
 
