@@ -220,10 +220,11 @@ function viewScores() {
 
 function getName() {
   document.getElementById("getName").style.display = "block";
-  var inputName = document.getElementById("getName").user-initials;
-  var max_char = 2;
-  if (inputName.value.length > max_char) {
-    window.alert("Initials can only be 3 or loess characters");
+  var inputName = document.getElementById("userInitials");
+  var max_char = 3;
+  console.log(inputName.value);
+  if (inputName.length > max_char) {
+    window.alert("Initials can only be 3 or less characters");
     getName();
   }
   else {
