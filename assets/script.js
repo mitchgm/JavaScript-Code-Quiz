@@ -8,6 +8,7 @@ var correctScore = 100;
 var someTime ;
 var scores = [];
 document.getElementById("viewScores").addEventListener("click", viewScores);
+var inputEl = document.getElementById("")
 
 
 
@@ -201,7 +202,8 @@ function endQuiz () {
   window.alert('end of quiz')
   clearTitle();
   clearQ();
-  saveScore();
+ // saveScore();
+  getName();
 };
 
 
@@ -216,6 +218,9 @@ function viewScores() {
   window.alert(saveScore);
 };
 
-function getScore() {
+function getName() {
+  document.getElementById("getName").style.display = "block";
+  //userName.setAttribute("id", "getName")
+  
   
 };

@@ -57,7 +57,9 @@
     font-size: 30px;
   }
 
-
+  .getName {
+    display: none;
+  }
 
 
  /* header h1 {
