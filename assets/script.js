@@ -73,13 +73,21 @@ function startQuiz() {
   setInterval(myTimer, 1000);
   startQuestions();
 
-  
 };
 
 function myTimer() {
  document.querySelector('span').textContent = time;
 
- // time--
+  if (time >= 0) {
+    time--;
+  }
+
+  else
+   {
+    clearInterval(time);
+    endQuiz();
+  }
+  
 
 };
 
@@ -140,6 +148,7 @@ function getAnswers() {
    console.log('wrong');
    clearTitle();
    clearQ();
+   time = time - 5;
   // startQuestions();
   }
 
