@@ -6,6 +6,7 @@ var currentIndex = 0;
 var score = 0;
 var correctScore = 100;
 var someTime ;
+var scores = [];
 document.getElementById("viewScores").addEventListener("click", viewScores);
 
 
@@ -206,8 +207,15 @@ function endQuiz () {
 
 function saveScore() {
   window.alert("saveScore");
+  localStorage.setItem("scores", JSON.stringify(scores))
 };
 
 function viewScores() {
   window.alert("viewScores");
+  var saveScore = localStorage.getItem("scores")
+  window.alert(saveScore);
+};
+
+function getScore() {
+  
 };
