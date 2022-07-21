@@ -1,5 +1,6 @@
 // var highScore = 0;
-var time = 10;
+var time = 1
+0;
 var mainEl = document.querySelector('main');
 var que_count = 5;
 var currentIndex = 0;
@@ -109,7 +110,7 @@ function startQuestions() {
   document.getElementById("start-quiz").style.display = "none";
  
    if (currentIndex == questions.length) {
-    console.log("hello");
+    //console.log("hello");
     endQuiz();
   }
   else {
