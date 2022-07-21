@@ -61,6 +61,10 @@
     display: none;
   }
 
+  .restart-btn {
+    display: none;
+  }
+
 
  /* header h1 {
     display: flex;

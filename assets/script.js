@@ -11,6 +11,8 @@ document.getElementById("viewScores").addEventListener("click", viewScores);
 var inputEl = document.getElementById("")
 var formEl = document.getElementById("getName")
 formEl.addEventListener("submit", getName);
+var reload = document.getElementById("restartBtn");
+reload.addEventListener("click", restartQuiz);
 
 
 
@@ -107,7 +109,7 @@ function startQuestions() {
   document.getElementById("start-quiz").style.display = "none";
  
    if (currentIndex == questions.length) {
-  console.log("currentIndex", currentIndex);
+    console.log("hello");
     endQuiz();
   }
   else {
@@ -148,7 +150,7 @@ function getAnswers() {
 // for (var i = 0; i < que_count; i++) {
 
  if (this.textContent == questions[currentIndex].answer) {
-   console.log("correct");
+  // console.log("correct");
     clearTitle();
     clearQ();
     
@@ -157,14 +159,14 @@ function getAnswers() {
    
   }
   else {
-   console.log('wrong');
+   //console.log('wrong');
    clearTitle();
    clearQ();
    time = time - 5;
   // startQuestions();
   }
 
-  console.log(currentIndex);
+ // console.log(currentIndex);
 currentIndex++;
  startQuestions();
 
@@ -223,6 +225,7 @@ function viewScores() {
 function getButton() {
   
   document.getElementById("getName").style.display = "block";
+  document.getElementById("restartBtn").style.display = "block";
   //getName();
 };
 
@@ -238,8 +241,14 @@ function getName(event) {
   }
   else {
     window.alert("score saved");
+    inputName.value = "";
   }
   //userName.setAttribute("id", "getName")
   
   
+};
+
+function restartQuiz() {
+  window.alert("restart quiz")
+  window.location.reload();
 };
