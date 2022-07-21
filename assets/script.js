@@ -6,6 +6,8 @@ var currentIndex = 0;
 var score = 0;
 var correctScore = 100;
 var someTime ;
+document.getElementById("viewScores").addEventListener("click", viewScores);
+
 
 
 var questions = [
@@ -89,9 +91,9 @@ function myTimer() {
     endQuiz();
     clearInterval(someTime);
     var pastTime = document.getElementsByClassName("time");
-    pastTime.style.visibility = "hidden";
+    pastTime[0].style.visibility = "hidden";
     var pastTimer = document.getElementsByClassName("timer-sec");
-    pastTimer.style.visibility = "hidden";
+    pastTimer[0].style.visibility = "hidden";
   }
   
 
@@ -196,4 +198,16 @@ function clearQ () {
 
 function endQuiz () {
   window.alert('end of quiz')
+  clearTitle();
+  clearQ();
+  saveScore();
+};
+
+
+function saveScore() {
+  window.alert("saveScore");
+};
+
+function viewScores() {
+  window.alert("viewScores");
 };
