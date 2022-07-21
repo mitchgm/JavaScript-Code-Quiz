@@ -9,6 +9,8 @@ var someTime ;
 var scores = [];
 document.getElementById("viewScores").addEventListener("click", viewScores);
 var inputEl = document.getElementById("")
+var formEl = document.getElementById("getName")
+formEl.addEventListener("submit", getName);
 
 
 
@@ -203,7 +205,7 @@ function endQuiz () {
   clearTitle();
   clearQ();
  // saveScore();
-  getName();
+  getButton();
 };
 
 
@@ -218,14 +220,21 @@ function viewScores() {
   window.alert(saveScore);
 };
 
-function getName() {
+function getButton() {
+  
   document.getElementById("getName").style.display = "block";
+  //getName();
+};
+
+function getName(event) {
+  event.preventDefault();
   var inputName = document.getElementById("userInitials");
   var max_char = 3;
   console.log(inputName.value);
-  if (inputName.length > max_char) {
+  if (inputName.value.length > max_char) {
     window.alert("Initials can only be 3 or less characters");
-    getName();
+
+    //getName();
   }
   else {
     window.alert("score saved");
