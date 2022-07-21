@@ -1,8 +1,10 @@
 // var highScore = 0;
 var time = 60;
 var mainEl = document.querySelector('main');
-var que_count = 0;
+var que_count = 5;
 var currentIndex = 0;
+var score = 0;
+var correctScore = 100;
 
 
 var questions = [
@@ -70,51 +72,95 @@ document.getElementById("start-quiz").addEventListener("click", startQuiz);
 function startQuiz() {
   setInterval(myTimer, 1000);
   startQuestions();
-  
+
 };
 
 function myTimer() {
  document.querySelector('span').textContent = time;
 
- // time--
+  if (time >= 0) {
+    time--;
+  }
+
+  else
+   {
+    clearInterval(time);
+    endQuiz();
+  }
+  
 
 };
 
 function startQuestions() {
   document.getElementById("start-quiz").style.display = "none";
-  var questTitle = document.createElement("h1");
+ 
+   if (currentIndex == questions.length) {
+  console.log("currentIndex", currentIndex);
+    endQuiz();
+  }
+  else {
+      var questTitle = document.createElement("h1");
+  questTitle.setAttribute("class", "pastTitle")
   questTitle.textContent = questions[currentIndex].question;
   mainEl.appendChild(questTitle);
   getAnswers();
-  currentIndex++;
+ // currentIndex++;
+
+  }
+  
+  
+  
 };
 
 function getAnswers() {
   for (var i = 0; i < questions[currentIndex].options.length; i++) {
   var questAnswer = document.createElement("button");
-  
+  questAnswer.setAttribute("class", "pastAnswer")
   questAnswer.textContent = questions[currentIndex].options[i];
   
   //console.log(i);
   mainEl.append(questAnswer);
  // currentIndex++;
   //indexCount();
+
+  questAnswer.addEventListener("click", validateAnswer);
   };
-  validateAnswer();
-  console.log('function works');
-  questAnswer.addEventListener("click", validateAnswer(i));
+  
+
+ 
 };
 
   function validateAnswer() {
-   console.log("1");
-//   //console.log(questAnswer.textContent.op);
-//  if (this.textContent == questions[currentIndex].answer) {
-//   console.log("correct");
-//  }
-//  else {
-//   console.log('wrong');
-//  }
+  // console.log("1");
+ // console.log(questions[currentIndex-1].answer);
+// for (var i = 0; i < que_count; i++) {
 
+ if (this.textContent == questions[currentIndex].answer) {
+   console.log("correct");
+    clearTitle();
+    clearQ();
+    
+  
+   score += correctScore;
+   
+  }
+  else {
+   console.log('wrong');
+   clearTitle();
+   clearQ();
+   time = time - 5;
+  // startQuestions();
+  }
+
+  console.log(currentIndex);
+currentIndex++;
+ startQuestions();
+
+
+ 
+
+ 
+  //endQuiz();
   
  };
 
@@ -122,3 +168,26 @@ function getAnswers() {
 //   currentIndex++
 // };
 
+function clearTitle () {
+  var pastT = document.getElementsByClassName("pastTitle");
+  
+  for (var e = 0; e < pastT.length; e++) {
+    
+    pastT[e].style.display = "none";
+  };
+};
+
+
+function clearQ () {
+  var pastQ = document.getElementsByClassName("pastAnswer");
+ // console.log(pastQ);
+  for (var e = 0; e < pastQ.length; e++) {
+    
+    pastQ[e].style.display = "none";
+  };
+};
+
+
+function endQuiz () {
+  window.alert('end of quiz')
+};
