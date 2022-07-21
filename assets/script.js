@@ -1,10 +1,11 @@
 // var highScore = 0;
-var time = 60;
+var time = 10;
 var mainEl = document.querySelector('main');
 var que_count = 5;
 var currentIndex = 0;
 var score = 0;
 var correctScore = 100;
+var someTime ;
 
 
 var questions = [
@@ -70,7 +71,7 @@ var questions = [
 document.getElementById("start-quiz").addEventListener("click", startQuiz);
 
 function startQuiz() {
-  setInterval(myTimer, 1000);
+  someTime = setInterval(myTimer, 1000);
   startQuestions();
 
 };
@@ -84,8 +85,13 @@ function myTimer() {
 
   else
    {
-    clearInterval(time);
+    
     endQuiz();
+    clearInterval(someTime);
+    var pastTime = document.getElementsByClassName("time");
+    pastTime.style.visibility = "hidden";
+    var pastTimer = document.getElementsByClassName("timer-sec");
+    pastTimer.style.visibility = "hidden";
   }
   
 
