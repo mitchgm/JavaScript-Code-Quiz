@@ -22,7 +22,7 @@ Link to deployed website: https://mitchgm.github.io/Mitch-Portfolio/
 # User Story
 
 AS A coding boot camp student
-I WANT to take a timed quiz on JavaScript fundamentals that stores high scores
+I WANT to take a timed quiz on coding fundamentals that stores high scores
 SO THAT I can gauge my progress compared to my peers
 
 # Acceptance Criteria
@@ -51,6 +51,7 @@ v1.0.0
 - updated css and html to provide a better user experience
 - created a repo on github
 - fixed image pathing
+- created javascript files
 
 
 

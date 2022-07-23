@@ -5,8 +5,18 @@ var que_count = 5;
 var currentIndex = 0;
 var score = 0;
 var correctScore = 100;
+var someTime ;
+var scores = [];
+document.getElementById("viewScores").addEventListener("click", viewScores);
+var inputEl = document.getElementById("")
+var formEl = document.getElementById("getName")
+formEl.addEventListener("submit", getName);
+var reload = document.getElementById("restartBtn");
+var inputName = document.getElementById("userInitials");
+reload.addEventListener("click", restartQuiz);
 
 
+// array of questions
 var questions = [
     {
         numb: 1,
@@ -66,12 +76,13 @@ var questions = [
 ];
 
 
-
+// when the start quiz button is clicked, fun the startQuiz function
 document.getElementById("start-quiz").addEventListener("click", startQuiz);
 
 function startQuiz() {
-  setInterval(myTimer, 1000);
+  someTime = setInterval(myTimer, 1000);
   startQuestions();
+  // starts the questions, as well as the timer
 
 };
 
@@ -84,27 +95,37 @@ function myTimer() {
 
   else
    {
-    clearInterval(time);
+    
     endQuiz();
-  }
-  
+    clearTimer();
 
+  }
+};
+
+function clearTimer() {
+      clearInterval(someTime);
+    var pastTime = document.getElementsByClassName("time");
+    pastTime[0].style.visibility = "hidden";
+    var pastTimer = document.getElementsByClassName("timer-sec");
+    pastTimer[0].style.visibility = "hidden";
 };
 
 function startQuestions() {
+  // Hides the start quiz button
   document.getElementById("start-quiz").style.display = "none";
  
    if (currentIndex == questions.length) {
-  console.log("currentIndex", currentIndex);
+    // if the question array is empty, calls the end quiz function
     endQuiz();
   }
   else {
-      var questTitle = document.createElement("h1");
-  questTitle.setAttribute("class", "pastTitle")
-  questTitle.textContent = questions[currentIndex].question;
-  mainEl.appendChild(questTitle);
-  getAnswers();
- // currentIndex++;
+    // if there are still questions, keep dynamically creating a h1 element
+    var questTitle = document.createElement("h1");
+    questTitle.setAttribute("class", "pastTitle")
+    questTitle.textContent = questions[currentIndex].question;
+    mainEl.appendChild(questTitle);
+    getAnswers();
+    // currentIndex++;
 
   }
   
@@ -113,17 +134,14 @@ function startQuestions() {
 };
 
 function getAnswers() {
+  //dynamically creates the answer options as long as there still are questions left in the quiz
   for (var i = 0; i < questions[currentIndex].options.length; i++) {
-  var questAnswer = document.createElement("button");
-  questAnswer.setAttribute("class", "pastAnswer")
-  questAnswer.textContent = questions[currentIndex].options[i];
-  
-  //console.log(i);
-  mainEl.append(questAnswer);
- // currentIndex++;
-  //indexCount();
-
-  questAnswer.addEventListener("click", validateAnswer);
+    var questAnswer = document.createElement("button");
+    // gives each button the pastAnswer class
+    questAnswer.setAttribute("class", "pastAnswer")
+    questAnswer.textContent = questions[currentIndex].options[i];
+    mainEl.append(questAnswer);
+    questAnswer.addEventListener("click", validateAnswer);
   };
   
 
@@ -131,46 +149,30 @@ function getAnswers() {
 };
 
   function validateAnswer() {
-  // console.log("1");
- // console.log(questions[currentIndex-1].answer);
-// for (var i = 0; i < que_count; i++) {
 
  if (this.textContent == questions[currentIndex].answer) {
-   console.log("correct");
+    // if the content of this equals the answer from the array, its correct, move on and add the score
     clearTitle();
     clearQ();
+    score += correctScore;
     
-  
-   score += correctScore;
-   
   }
   else {
-   console.log('wrong');
+ 
    clearTitle();
    clearQ();
    time = time - 5;
-  // startQuestions();
+    // if the answer is wrong, move on but subtract time
   }
-
-  console.log(currentIndex);
-currentIndex++;
- startQuestions();
-
-
- 
-
- 
-  //endQuiz();
-  
+  currentIndex++;
+  startQuestions();
+  // either way, add to the index and re run the startQuestions button
  };
 
-// function indexCount () {
-//   currentIndex++
-// };
 
 function clearTitle () {
   var pastT = document.getElementsByClassName("pastTitle");
-  
+  // this function clears away the title from the prior question
   for (var e = 0; e < pastT.length; e++) {
     
     pastT[e].style.display = "none";
@@ -180,7 +182,7 @@ function clearTitle () {
 
 function clearQ () {
   var pastQ = document.getElementsByClassName("pastAnswer");
- // console.log(pastQ);
+ // this function clears away the answers from the prior question
   for (var e = 0; e < pastQ.length; e++) {
     
     pastQ[e].style.display = "none";
@@ -190,4 +192,62 @@ function clearQ () {
 
 function endQuiz () {
   window.alert('end of quiz')
+  clearTitle();
+  clearQ();
+  getButton();
+  clearTimer();
+};
+
+
+function saveScore() {
+  
+  localStorage.setItem("scores", JSON.stringify(scores))
+};
+
+// function viewScores() {
+  //window.alert("viewScores");
+  //var saveScore = localStorage.getItem("scores")
+  //window.alert(saveScore);
+//};
+
+function getButton() {
+  
+  document.getElementById("getName").style.display = "block";
+  document.getElementById("restartBtn").style.display = "block";
+  
+};
+
+function getName(event) {
+  event.preventDefault();
+  var max_char = 3;
+  if (inputName.value.length > max_char) {
+    window.alert("Initials can only be 3 or less characters");
+    inputName.value = "";
+    getName();
+    
+  }
+  else {
+    window.alert("score saved");
+   
+  }
+  //userName.setAttribute("id", "getName")
+  var finalScore = {initials: inputName.value, score: score};
+  var allScores = localStorage.getItem("allScores");
+  if (allScores === null) {
+    allScores = scores;
+
+  }
+  else {
+    allScores = JSON.parse(allScores);
+  }
+  allScores.push(finalScore);
+  var newScore = JSON.stringify(allScores);
+  localStorage.setItem("allScores", newScore);
+  window.location.replace("scores.html");
+
+};
+
+function restartQuiz() {
+  window.alert("restart quiz")
+  window.location.reload();
 };
