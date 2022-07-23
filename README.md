@@ -9,7 +9,7 @@ In the 4th challenge of the bootcamp, I set out to make myself a coding quiz. Th
 
 To view the project, clone the git repository using VS Code. this will allow you to vie the index.html file ass well as the css style file. The website can be view by right clicking in the index.html file and opening via web browser. 
 
-Link to deployed website: https://mitchgm.github.io/Mitch-Portfolio/ 
+Link to deployed website: https://github.com/mitchgm/JavaScript-Code-Quiz 
 
 # Usage
 
