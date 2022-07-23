@@ -12,6 +12,7 @@ var inputEl = document.getElementById("")
 var formEl = document.getElementById("getName")
 formEl.addEventListener("submit", getName);
 var reload = document.getElementById("restartBtn");
+var inputName = document.getElementById("userInitials");
 reload.addEventListener("click", restartQuiz);
 
 
@@ -96,14 +97,17 @@ function myTimer() {
    {
     
     endQuiz();
-    clearInterval(someTime);
+    clearTimer();
+
+  }
+};
+
+function clearTimer() {
+      clearInterval(someTime);
     var pastTime = document.getElementsByClassName("time");
     pastTime[0].style.visibility = "hidden";
     var pastTimer = document.getElementsByClassName("timer-sec");
     pastTimer[0].style.visibility = "hidden";
-  }
-  
-
 };
 
 function startQuestions() {
@@ -151,7 +155,7 @@ function getAnswers() {
     clearTitle();
     clearQ();
     score += correctScore;
-   
+    
   }
   else {
  
@@ -191,19 +195,20 @@ function endQuiz () {
   clearTitle();
   clearQ();
   getButton();
+  clearTimer();
 };
 
 
 function saveScore() {
-  window.alert("saveScore");
+  
   localStorage.setItem("scores", JSON.stringify(scores))
 };
 
-function viewScores() {
-  window.alert("viewScores");
-  var saveScore = localStorage.getItem("scores")
-  window.alert(saveScore);
-};
+// function viewScores() {
+  //window.alert("viewScores");
+  //var saveScore = localStorage.getItem("scores")
+  //window.alert(saveScore);
+//};
 
 function getButton() {
   
@@ -214,21 +219,32 @@ function getButton() {
 
 function getName(event) {
   event.preventDefault();
-  var inputName = document.getElementById("userInitials");
   var max_char = 3;
-  console.log(inputName.value);
   if (inputName.value.length > max_char) {
     window.alert("Initials can only be 3 or less characters");
-
-    //getName();
+    inputName.value = "";
+    getName();
+    
   }
   else {
     window.alert("score saved");
-    inputName.value = "";
+   
   }
   //userName.setAttribute("id", "getName")
-  
-  
+  var finalScore = {initials: inputName.value, score: score};
+  var allScores = localStorage.getItem("allScores");
+  if (allScores === null) {
+    allScores = scores;
+
+  }
+  else {
+    allScores = JSON.parse(allScores);
+  }
+  allScores.push(finalScore);
+  var newScore = JSON.stringify(allScores);
+  localStorage.setItem("allScores", newScore);
+  window.location.replace("scores.html");
+
 };
 
 function restartQuiz() {

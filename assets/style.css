@@ -15,11 +15,12 @@
     justify-content: space-between;
     width: 100%;
     margin-bottom: 15px;
-    padding-bottom: 55px;
+    padding-bottom: 35px;
     flex: 1;
-    margin-top: 15px;
+    /* margin-top: 15px; */
     background-color: var(--primary-color);
     color: var(--secondary-color);
+    padding-top: 20px;
   }
 
   .start-btn {
@@ -48,13 +49,17 @@
     flex-wrap: wrap;
     justify-content: space-between;
     width: 100%;
-    margin-bottom: 15px;
+    /* margin-bottom: 15px; */
     padding-top: 55px;
     flex: 1;
-    margin-top: 15px;
+   /* margin-top: 15px; */
     background-color: var(--primary-color);
     color: var(--secondary-color);
     font-size: 30px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
   }
 
   .getName {
@@ -63,6 +68,7 @@
 
   .restart-btn {
     display: none;
+
   }
 
 
@@ -76,11 +82,84 @@
 } */
 
  
+a {
+  text-decoration: none;
+  color: yellow;
+}
+
+.pastAnswer {
+  width: 215px;
+  margin-left: 25px;
+}
+.pastTitle {
+  margin-left: 25px;
+}
+
+/* main {
+  /* display: flex; */
 
 
+.btn {
+  color: var(--primary-color);
+  background-color: var(--secondary-color);
+  margin-top: 150px;
+  font-size: 25px;
+  text-align: center;
+ 
+}
 
+.btn:hover {
+  color: var(--secondary-color);
+  background-color: var(--primary-color);
+}
 
+.restart-btn {
+  color: var(--primary-color);
+  background-color: var(--secondary-color);
+  /* margin-top: 50px; */
+  font-size: 25px;
+  text-align: center;
+  margin: auto;
+  margin-top: 15px;
+  
+  
+}
 
+.restart-btn:hover {
+  color: var(--secondary-color);
+  background-color: var(--primary-color);
+}
 
+.initials-btn {
+  text-align: center;
+  padding-left: 25px;
+}
 
+.initials {
+  text-align: center;
+  padding-left: 25px;
+}
 
+.highScores {
+text-align: center;
+margin: auto;
+}
+
+.backBtn {
+  text-align: center;
+  margin: auto;
+}
+
+.highList {
+  color: var(black);
+  font-size: 25px;
+  padding: 3px;
+}
+
+#clearScores {
+  color: var(--primary-color);
+  background-color: var(--secondary-color);
+  font-size: 25px;
+  text-align: center;
+  margin-top: 15px;
+}

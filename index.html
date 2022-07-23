@@ -11,7 +11,7 @@
 <body>
     <header>
         <p>
-          <h1 class="view-scores" id="viewScores">View Scores</h1>  
+          <h1 class="view-scores" id="viewScores"><a href="scores.html">View Scores</a></h1>  
         </p>
         <p>
         <h1 class="page-title">Mitch's JavaScript Code Quiz</h1>    
@@ -31,17 +31,19 @@
             <button class="start-btn" id="start-quiz" type="button">Start Quiz!</button>
         </div>
         <form id = "getName" class="getName">
-            <div>
+            <div class="initials">
                 <input type="text" name="user-initials" placeholder="Enter User Initials" id="userInitials"/>
             </div>
-            <div>
+            <div class="initials-btn">
                 <button class="btn" id="nameBtn" type="submit">Save Initials</button>
+                
+            <button class="restart-btn" id="restartBtn" type="submit">Restart Quiz</button>
+        
             </div>
+            
         </form>
 
-        <div>
-            <button class="restart-btn" id="restartBtn" type="submit">Restart Quiz</button>
-        </div>
+       
        
     </main>
 
